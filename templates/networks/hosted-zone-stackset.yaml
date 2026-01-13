@@ -1,0 +1,43 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Creates a public Route 53 hosted zone for a top-level domain (deploy via StackSets into Network account).
+
+Parameters:
+  DomainName:
+    Type: String
+    Description: Top-level domain name (e.g. example.com)
+
+  NetworkAccountId:
+    Type: String
+    Description: AWS Account ID that must own the hosted zone
+    Default: "718311990857"
+
+Rules:
+  EnforceNetworkAccount:
+    Assertions:
+      - Assert:
+          Fn::Equals:
+            - !Ref AWS::AccountId
+            - !Ref NetworkAccountId
+        AssertDescription: This stack must be deployed into the Network account.
+
+Resources:
+  HostedZone:
+    Type: AWS::Route53::HostedZone
+    Properties:
+      Name: !Ref DomainName
+      HostedZoneConfig:
+        Comment: !Sub "Hosted zone for ${DomainName}"
+      Tags:
+        - Key: ManagedBy
+          Value: CloudFormation
+        - Key: Domain
+          Value: !Ref DomainName
+
+Outputs:
+  HostedZoneId:
+    Description: Hosted Zone ID
+    Value: !Ref HostedZone
+
+  NameServers:
+    Description: Authoritative name servers for the hosted zone
+    Value: !Join [", ", !GetAtt HostedZone.NameServers]
