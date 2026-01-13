@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Create one or two ACM DNS validation CNAME records in the Network account hosted zone.
+
+Parameters:
+  HostedZoneId:
+    Type: String
+    Description: Route 53 Hosted Zone ID in the Network account
+
+  Record1Name:
+    Type: String
+    Description: Validation CNAME record #1 name (FQDN, usually ends with a dot)
+
+  Record1Value:
+    Type: String
+    Description: Validation CNAME record #1 value/target (usually ends with a dot)
+
+  Record2Name:
+    Type: String
+    Default: ""
+    Description: (Optional) Validation CNAME record #2 name (leave empty if not needed)
+
+  Record2Value:
+    Type: String
+    Default: ""
+    Description: (Optional) Validation CNAME record #2 value/target (leave empty if not needed)
+
+Conditions:
+  HasRecord2: !And
+    - !Not [!Equals [!Ref Record2Name, ""]]
+    - !Not [!Equals [!Ref Record2Value, ""]]
+
+Resources:
+  ValidationRecord1:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref Record1Name
+      Type: CNAME
+      TTL: 300
+      ResourceRecords:
+        - !Ref Record1Value
+
+  ValidationRecord2:
+    Type: AWS::Route53::RecordSet
+    Condition: HasRecord2
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref Record2Name
+      Type: CNAME
+      TTL: 300
+      ResourceRecords:
+        - !Ref Record2Value
+
+Outputs:
+  Record1FQDN:
+    Description: Validation record #1 created
+    Value: !Ref Record1Name
+
+  Record2FQDN:
+    Condition: HasRecord2
+    Description: Validation record #2 created (if provided)
+    Value: !Ref Record2Name

@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Request an ACM certificate for CloudFront in us-east-1 (DNS validation).
+
+Parameters:
+  DomainName:
+    Type: String
+    Description: Primary domain name for the cert (e.g. mullinsfam.co.uk)
+
+  SubjectAlternativeNames:
+    Type: CommaDelimitedList
+    Default: ""
+    Description: Optional SANs (comma-separated). Leave empty for none.
+
+Conditions:
+  HasSANs: !Not [!Equals [!Join ["", !Ref SubjectAlternativeNames], ""]]
+
+Resources:
+  CloudFrontCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Ref DomainName
+      SubjectAlternativeNames: !If
+        - HasSANs
+        - !Ref SubjectAlternativeNames
+        - !Ref AWS::NoValue
+      ValidationMethod: DNS
+
+Outputs:
+  CertificateArn:
+    Description: ACM certificate ARN (must be in us-east-1 for CloudFront)
+    Value: !Ref CloudFrontCertificate
