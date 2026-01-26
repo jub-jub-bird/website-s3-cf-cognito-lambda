@@ -1,0 +1,25 @@
+config:
+  # AWS CLI profile used by the Pulumi AWS provider
+  aws:profile: 954837761502_AdministratorAccess
+  # AWS region for all resources in this stack
+  aws:region: eu-west-2
+  # AWS Account ID for the shared/network account
+  example-com:accountId: "718311990857"
+  # False on first deploy; true to adopt existing Route 53 records
+  example-com:adoptExistingRecords: "false"
+  # Base/root DNS domain for the site
+  example-com:baseDomain: example.com
+  # IAM role name Pulumi assumes when deploying into target accounts
+  example-com:deployRoleName: PulumiDeploy
+  # Slug used for naming AWS resources and Pulumi project
+  example-com:domainSlug: example-com
+  # Route 53 Hosted Zone ID for the base domain
+  example-com:hostedZoneId: Z07653062FAMACMF1IY56
+  # Route 53 Hosted Zone name for the base domain
+  example-com:hostedZoneName: example.com
+  # Pulumi organization name
+  example-com:org: jub-jub-bird-org
+  # Whether DNS records should be protected from deletion
+  example-com:protectDnsRecords: "false"
+  # Path to Python interpreter used by Pulumi for this project
+  example-com:pythonCmd: .\.venv\Scripts\python.exe

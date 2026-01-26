@@ -1,0 +1,39 @@
+config:
+  # AWS CLI profile for aws-native provider
+  aws-native:profile: 954837761502_AdministratorAccess
+  # Region for aws-native provider
+  aws-native:region: eu-west-2
+  # AWS CLI profile used by the Pulumi AWS provider
+  aws:profile: 954837761502_AdministratorAccess
+  # AWS region for this stack
+  aws:region: eu-west-2
+  # AWS Account ID for the staging account
+  example-com:accountId: "898147177165"
+  # Custom domain for the auth API (staging)
+  example-com:authApiCustomDomain: auth-api.staging.example.com
+  # Base/root DNS domain for the site
+  example-com:baseDomain: example.com
+  # Cognito auth domain (staging)
+  example-com:cognitoAuthDomain: auth.staging.example.com
+  # Default object served by CloudFront
+  example-com:defaultRootObject: index.html
+  # IAM role name Pulumi assumes when deploying into target accounts
+  example-com:deployRoleName: PulumiDeploy
+  # Slug used for naming AWS resources and Pulumi project
+  example-com:domainSlug: example-com
+  # Enable/disable API access logging
+  example-com:enableApiLogging: "true"
+  # False on first deploy (enable later)
+  example-com:enableAuthApiDomain: "false"
+  # False on first deploy (enable later)
+  example-com:enableCognitoDomain: "false"
+  # False on first deploy (enable later)
+  example-com:enableCustomDomain: "false"
+  # CloudWatch log retention (days)
+  example-com:logRetentionDays: "7"
+  # Pulumi organization name
+  example-com:org: jub-jub-bird-org
+  # Path to Python interpreter used by Pulumi for this project
+  example-com:pythonCmd: .\.venv\Scripts\python.exe
+  # Path used for auth redirect callbacks
+  example-com:redirectPath: /auth/callback

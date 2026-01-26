@@ -2,3 +2,10 @@
 .venv/
 venv/
 *.pem
+# Local secrets (never commit)
+secrets/
+*.secrets.json
+Pulumi.yaml
+Pulumi.staging.yaml
+Pulumi.prod.yaml
+Pulumi.network.yaml

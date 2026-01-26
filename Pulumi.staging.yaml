@@ -1,6 +1,8 @@
 config:
   aws:region: eu-west-2
   aws-native:region: eu-west-2
+  aws:profile: 954837761502_AdministratorAccess
+  aws-native:profile: 954837761502_AdministratorAccess
   website-s3-cf-cognito-lambda:pythonCmd: .\.venv\Scripts\python.exe
   website-s3-cf-cognito-lambda:baseDomain: mullinsfam.co.uk
   website-s3-cf-cognito-lambda:accountId: "898147177165"
@@ -34,5 +36,3 @@ config:
   ### Can be set to true or false on first deploy
   website-s3-cf-cognito-lambda:enableApiLogging: "true"
   website-s3-cf-cognito-lambda:logRetentionDays: "7"
-  aws:profile: 954837761502_AdministratorAccess
-  aws-native:profile: 954837761502_AdministratorAccess

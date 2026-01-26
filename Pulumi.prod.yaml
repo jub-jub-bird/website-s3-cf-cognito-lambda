@@ -3,9 +3,9 @@ config:
   aws-native:region: eu-west-2
   website-s3-cf-cognito-lambda:pythonCmd: .\.venv\Scripts\python.exe
   website-s3-cf-cognito-lambda:baseDomain: mullinsfam.co.uk
+  website-s3-cf-cognito-lambda:domainSlug: mullinsfam-co-uk
   website-s3-cf-cognito-lambda:accountId: "928100078384"
   website-s3-cf-cognito-lambda:deployRoleName: PulumiDeploy
-  website-s3-cf-cognito-lambda:domainSlug: mullinsfam-co-uk
   website-s3-cf-cognito-lambda:defaultRootObject: index.html
   website-s3-cf-cognito-lambda:org: jub-jub-bird-org
   website-s3-cf-cognito-lambda:cloudfrontPublicKeyPem: |-
