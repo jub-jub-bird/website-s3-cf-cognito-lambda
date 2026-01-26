@@ -1,0 +1,14 @@
+config:
+  aws:region: eu-west-2
+  website-s3-cf-cognito-lambda:pythonCmd: .\.venv\Scripts\python.exe
+  website-s3-cf-cognito-lambda:accountId: "718311990857"
+  website-s3-cf-cognito-lambda:deployRoleName: PulumiDeploy
+  website-s3-cf-cognito-lambda:domainSlug: mullinsfam-co-uk
+  website-s3-cf-cognito-lambda:baseDomain: mullinsfam.co.uk
+  website-s3-cf-cognito-lambda:hostedZoneName: mullinsfam.co.uk
+  website-s3-cf-cognito-lambda:hostedZoneId: Z07653062FAMACMF1IY56
+  website-s3-cf-cognito-lambda:org: jub-jub-bird-org
+  ### Set to false upon first deploy.
+  website-s3-cf-cognito-lambda:adoptExistingRecords: "false"
+  website-s3-cf-cognito-lambda:protectDnsRecords: "false"
+  aws:profile: 954837761502_AdministratorAccess

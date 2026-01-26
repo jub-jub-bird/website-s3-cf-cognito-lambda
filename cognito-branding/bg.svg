@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 1600 900"
+     preserveAspectRatio="xMidYMid slice">
+
+  <defs>
+    <!-- Soft white base -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F7F9FC"/>
+    </linearGradient>
+
+    <!-- Gentle family-friendly wave colours -->
+    <linearGradient id="waveBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#6EC1E4" stop-opacity="0"/>
+      <stop offset="40%" stop-color="#6EC1E4" stop-opacity="0.35"/>
+      <stop offset="70%" stop-color="#9ADBCF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#9ADBCF" stop-opacity="0"/>
+    </linearGradient>
+
+    <linearGradient id="waveLilac" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#B7A9E5" stop-opacity="0"/>
+      <stop offset="45%" stop-color="#B7A9E5" stop-opacity="0.30"/>
+      <stop offset="75%" stop-color="#E2DDF6" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#E2DDF6" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Very subtle line colour -->
+    <linearGradient id="line" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B4A66" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#3B4A66" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Gentle blur for softness (not glow) -->
+    <filter id="soften">
+      <feGaussianBlur stdDeviation="1.1"/>
+    </filter>
+
+    <!-- Subtle paper grain -->
+    <pattern id="grain" width="26" height="26" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#000000" opacity="0.025"/>
+    </pattern>
+  </defs>
+
+  <!-- Base background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grain)"/>
+
+  <!-- Soft abstract waves -->
+  <g filter="url(#soften)">
+    <path d="M -60 620
+             C 260 560, 520 720, 820 640
+             C 1120 560, 1320 600, 1720 520
+             L 1720 980 L -60 980 Z"
+          fill="url(#waveBlue)"/>
+
+    <path d="M -80 360
+             C 240 300, 520 460, 820 380
+             C 1120 300, 1320 340, 1720 260
+             L 1720 980 L -80 980 Z"
+          fill="url(#waveLilac)"/>
+  </g>
+
+  <!-- Calm geometric accents -->
+  <g opacity="0.45">
+    <path d="M 120 140 L 520 140 L 640 260 L 520 380 L 120 380 Z"
+          fill="none" stroke="url(#line)" stroke-width="2"/>
+
+    <circle cx="1350" cy="690" r="190"
+            fill="none" stroke="url(#line)" stroke-width="2"/>
+
+    <circle cx="350" cy="720" r="220"
+            fill="none" stroke="url(#line)" stroke-width="2"/>
+  </g>
+
+  <!-- Gentle center calm zone for login form -->
+  <radialGradient id="calm" cx="50%" cy="45%" r="55%">
+    <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.85"/>
+    <stop offset="70%" stop-color="#FFFFFF" stop-opacity="0.0"/>
+  </radialGradient>
+  <rect width="1600" height="900" fill="url(#calm)"/>
+
+</svg>
