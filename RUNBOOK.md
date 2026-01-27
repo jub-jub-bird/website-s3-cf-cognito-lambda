@@ -90,3 +90,46 @@ pip install -r requirements.txt
 
 - pip completes without errors  
 - All listed packages are installed successfully
+
+pulumi logout
+pulumi login s3://pmullins-iac-state
+git clone https://github.com/jub-jub-bird/website-s3-cf-cognito-lambda.git mullinsfam-co-uk
+cd .\mullinsfam-co-uk\
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+python.exe -m pip install --upgrade pip
+pip install -r requirements.txt
+
+python .\scripts\config_init.py --domain mullinsfam.co.uk --force
+
+pulumi stack init mullinsfam-co-uk-network
+pulumi stack init mullinsfam-co-uk-staging
+pulumi stack init mullinsfam-co-uk-prod
+
+python .\scripts\create_secrets.py --domain mullinsfam.co.uk --force
+python .\scripts\config_init.py --domain mullinsfam.co.uk --force --inject-secrets
+
+aws sso login --profile 954837761502_AdministratorAccess
+$env:AWS_PROFILE="954837761502_AdministratorAccess"
+
+pulumi up -s mullinsfam-co-uk-prod
+pulumi up -s mullinsfam-co-uk-staging
+pulumi up -s mullinsfam-co-uk-network
+
+pulumi config set mullinsfam-co-uk:enableCustomDomain true -s mullinsfam-co-uk-prod
+pulumi config set mullinsfam-co-uk:enableCustomDomain true -s mullinsfam-co-uk-staging
+pulumi up -s mullinsfam-co-uk-prod
+pulumi up -s mullinsfam-co-uk-staging
+pulumi up -s mullinsfam-co-uk-network
+
+pulumi config set mullinsfam-co-uk:enableCognitoDomain true -s mullinsfam-co-uk-prod
+pulumi config set mullinsfam-co-uk:enableCognitoDomain true -s mullinsfam-co-uk-staging
+pulumi up -s mullinsfam-co-uk-prod
+pulumi up -s mullinsfam-co-uk-staging
+pulumi up -s mullinsfam-co-uk-network
+
+pulumi config set mullinsfam-co-uk:enableAuthApiDomain true -s mullinsfam-co-uk-prod
+pulumi config set mullinsfam-co-uk:enableAuthApiDomain true -s mullinsfam-co-uk-staging
+pulumi up -s mullinsfam-co-uk-prod
+pulumi up -s mullinsfam-co-uk-staging
+pulumi up -s mullinsfam-co-uk-network
