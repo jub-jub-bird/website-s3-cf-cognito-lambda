@@ -1,9 +1,0 @@
-config:
-  # AWS CLI profile for aws-native provider
-  aws-native:profile: 954837761502_AdministratorAccess
-  # Region for aws-native provider
-  aws-native:region: eu-west-2
-  # AWS CLI profile used by the Pulumi AWS provider
-  aws:profile: 954837761502_AdministratorAccess
-  # AWS region for this stack
-  aws:region: eu-west-2

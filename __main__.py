@@ -46,7 +46,8 @@ pulumi.export("logRetentionDays", log_retention_days)
 # Optional API Gateway custom domain
 auth_api_custom_domain = cfg.get("authApiCustomDomain")
 
-stack = pulumi.get_stack()
+full_stack = pulumi.get_stack()
+stack = full_stack.split("-")[-1]
 iac = aws.get_caller_identity()
 pulumi.export("stack", stack)
 

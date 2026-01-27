@@ -25,8 +25,8 @@ def deploy_network_dns(
     if protect_records is None:
         protect_records = True
 
-    prod_ref = pulumi.StackReference(f"{org}/{project}/prod")
-    staging_ref = pulumi.StackReference(f"{org}/{project}/staging")
+    prod_ref = pulumi.StackReference(f"{project}-prod")
+    staging_ref = pulumi.StackReference(f"{project}-staging")
 
     def upsert_cname_records(prefix: str, records_out: pulumi.Output):
         def _mk(recs):
